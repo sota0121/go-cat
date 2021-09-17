@@ -16,10 +16,11 @@ func main() {
 	}
 	args := os.Args[1:]
 	// - set n option flag
-	// print_line_numbers := false
-	// if len(args) == 2 && args[1] == "-n" {
-	// 	print_line_numbers = true
-	// }
+	print_line_numbers := false
+	if len(args) == 2 && args[0] == "-n" {
+		print_line_numbers = true
+	}
+	fmt.Println(print_line_numbers)
 
 	// - set input file name
 	filename := ""
@@ -43,8 +44,13 @@ func main() {
 		return
 	}
 
+	var i int = 0
 	for fr.Scan() {
+		if print_line_numbers {
+			fmt.Print(i, " : ")
+		}
 		fmt.Println(fr.Text())
+		i++
 	}
 
 }
